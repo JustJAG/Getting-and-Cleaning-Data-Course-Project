@@ -1,10 +1,8 @@
----
-title: Codebook for Human_Activity_Recognition_Dataset
-subtitle: "Course"
-date: 2019-01-14
----
+## Codebook
+## Title: Human_Activity_Recognition_Dataset
+## Date: 2019-01-19
 
-# Data Overview
+### Data report overview
 The dataset examined has the following dimensions:
 
 
@@ -14,10 +12,10 @@ The dataset examined has the following dimensions:
 | Number of variables      |  82   |
 
 
-# Data Summary
+### Data Summary
     
 | Type                                        |    Variables                                              | Class     |Unique|
-|---------------------------------------------------------------------------------------------------------|:---------:|-----:|
+|---------------------------------------------|-----------------------------------------------------------|:---------:|-----:|
 | Activity                                    | ActivityId                                                |  integer  |    6 |
 | Activity                                    | Activity                                                  | character |    6 | 
 | Subject                                     | Subject                                                   |  integer  |   30 | 
@@ -102,12 +100,12 @@ The dataset examined has the following dimensions:
 | Frequency Domain                            | frequencyBodyBodyGyroscopeMagnitudeStd                    |  integer  |   40 |
 | Frequency Domain                            | frequencyBodyBodyGyroscopeJerkMagnitudeStd                |  integer  |   40 |
 
-# Processing Steps
+### Processing Steps
 
-## Data Source : 
+#### Data Source : 
 https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
-## Processing Script run_analysis.R that does the following.
+#### Processing Script run_analysis.R that does the following.
 
 -Loads training, test, features, subject and activity data
 
