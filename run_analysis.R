@@ -54,8 +54,6 @@ hm.file.download <- function(url, file.name, method = "curl", unzip = TRUE) {
   } else {
     print("no action: already unzipped")
   }
-
-  return(TRUE)
 }
 
 # Loads .csv or .txt files from specified directory
@@ -122,39 +120,44 @@ hm.file.load <- function(directory, ignore.files, na.rm = FALSE, pattern = ".csv
 #
 #
 run_analysis_step1 <- function() {
-  print("STEP1: Loading Training and Test Datasets")
+print("Step1: Loading Training and Test Datasets")
 
-  data.list <- list()
+data.list <- list()
 
-  file.url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
-  file.name <- "UCI HAR Dataset.zip"
-  folders <- c("UCI HAR Dataset/train", "UCI HAR Dataset/test", "UCI HAR Dataset")
-  ignore <- c("features_info.txt", "README.txt")
+file.url <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+file.name <- "UCI HAR Dataset.zip"
 
-  no_errors <- hm.file.download(file.url, file.name)
+if (!file.exists(file.name)) {
+  download.file(file.url, destfile = file.name)
+}
 
-  if (no_errors) {
-    for (folder in folders) {
-      data.list[[folder]] <- hm.file.load(
-        directory = folder,
-        ignore.files = ignore, pattern = ".txt"
-      )
-    }
+if (!file.exists("UCI HAR Dataset")) {
+  unzip(file.name)
+}
 
-    data.list2 <- list()
+folders <- c("UCI HAR Dataset/train", "UCI HAR Dataset/test", "UCI HAR Dataset")
 
-    for (x in data.list) {
-      ref <- names(as.list(x))
+ignore <- c("features_info.txt", "README.txt")
 
-      for (z in ref) {
-        data.list2[z] <- x[z]
-      }
-    }
+for (folder in folders) {
+  data.list[[folder]] <- hm.file.load(directory = folder, ignore, pattern = ".txt")
+}
 
-    print("STEP1: DONE")
-    invisible(data.list2)
+data.list2 <- list()
+
+for (x in data.list) {
+  ref <- names(as.list(x))
+
+  for (z in ref) {
+    data.list2[z] <- x[z]
   }
 }
+
+print("Step1: DONE")
+invisible(data.list2)
+}
+
+
 
 
 # Merges UCI HAR Dataset : Training, Test, Subject, Features and Activity Labels
@@ -235,7 +238,11 @@ run_analysis_step2 <- function(data) {
   invisible(data)
 }
 
-
+################################################################################
+################################################################################
+################################################################################
+# **** MAIN Executable Function ****
+#
 # Merges UCI HAR Dataset : Training, Test, Subject, Features and Activity Labels
 # to create one tidy data set
 # Processing
@@ -280,9 +287,12 @@ run_analysis <- function() {
     group_by(Activity, Subject) %>%
     summarise_all(funs(mean))
 
+  # re-order columns
   tidy_data_means_std <- select(tidy_data_means_std, Activity_Id, Activity, Subject, timeBodyAccelerometerMean.X:frequencyBodyBodyGyroscopeJerkMagnitudeStd)
 
+  # write tidy dataframe to txt file
   write.table(tidy_data_means_std, "tidy_data.txt", row.names = FALSE, quote = FALSE)
 
+  # return tidy dataframe
   return(tidy_data_means_std)
 }
