@@ -282,5 +282,8 @@ run_analysis <- function() {
     summarise_all(funs(mean))
 
   tidy_data_means_std <- select(tidy_data_means_std, Activity_Id, Activity, Subject, timeBodyAccelerometerMean.X:frequencyBodyBodyGyroscopeJerkMagnitudeStd)
+
+  write.table(tidy_data_means_std, "tidy_data.txt", row.names = FALSE, quote = FALSE)
+
   return(tidy_data_means_std)
 }
