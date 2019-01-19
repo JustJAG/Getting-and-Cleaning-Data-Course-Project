@@ -14,46 +14,45 @@ collected from the accelerometers # from the Samsung Galaxy S smartphone.
    https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
 
 ###  Processing:
-
- (1) Merges the training and the test sets to create one data set.
- (2) Extracts only the measurements on the mean and standard deviation for each measurement.
- (3) Uses descriptive activity names to name the activities in the data set
- (4) Appropriately labels the data set with descriptive variable names.
- (5) From the data set in step 4, creates a second, independent tidy data set
+1. Merges the training and the test sets to create one data set.
+2. Extracts only the measurements on the mean and standard deviation for each measurement.
+3. Uses descriptive activity names to name the activities in the data set
+4. Appropriately labels the data set with descriptive variable names.
+5. From the data set in step 4, creates a second, independent tidy data set
      with the average of each variable for each activity and each subject.
 
 ###  How to Run: run_analysis <- function() { ... } at R console
 
-(1) Load  source("run_analysis.R")
+1. Load  source("run_analysis.R")
 
-(2) tidy_data <- run_analysis() 
+2. tidy_data <- run_analysis() 
       (returns tidy dataframe and writes output to txt file : tidy_data.txt)
       
 ### Log Output run_analysis.R     
 
-tidy_data <- run_analysis()
-"extracting only the measurements on the mean and standard deviation"
-"STEP1: Loading Training and Test Datasets"
-"downloading :  UCI HAR Dataset.zip"
+1. tidy_data <- run_analysis()
+1. "extracting only the measurements on the mean and standard deviation"
+1. "STEP1: Loading Training and Test Datasets"
+1. "downloading :  UCI HAR Dataset.zip"
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 59.6M  100 59.6M    0     0  46432      0  0:22:27  0:22:27 --:--:--  129k
 
-"extracting only the measurements on the mean and standard deviation"
-"Step1: Loading Training and Test Datasets"
-"Loading from:  UCI HAR Dataset/train  :  3  data file(s)"
-"Loading from:  UCI HAR Dataset/test  :  3  data file(s)"
-"Loading from:  UCI HAR Dataset  :  4  data file(s)"
-"Step1: DONE"
-"STEP2 : BEGIN"
-"BEGIN: 2.1 Merge the training dataset"
-Joining, by = "Activity_Id"
-"DONE: 2.1 Merge the training dataset"
-"BEGIN: 2.2 Merge the test dataset"
-Joining, by = "Activity_Id"
-"DONE: 2.2 Merge the test dataset"
-"BEGIN: 2.3 Merge the training and the test sets to create one data set."
-"DONE: 2.3 Merge the training and the test sets to create one data set."
-"STEP2 : DONE"
-"grouping by Activity and Subject"
-"summarise_all(funs(mean))"
+1. "extracting only the measurements on the mean and standard deviation"
+2. "Step1: Loading Training and Test Datasets"
+3. "Loading from:  UCI HAR Dataset/train  :  3  data file(s)"
+4. "Loading from:  UCI HAR Dataset/test  :  3  data file(s)"
+5. "Loading from:  UCI HAR Dataset  :  4  data file(s)"
+6. "Step1: DONE"
+7. "STEP2 : BEGIN"
+8. "BEGIN: 2.1 Merge the training dataset"
+9. Joining, by = "Activity_Id"
+10. "DONE: 2.1 Merge the training dataset"
+11. "BEGIN: 2.2 Merge the test dataset"
+12. Joining, by = "Activity_Id"
+13. "DONE: 2.2 Merge the test dataset"
+14. "BEGIN: 2.3 Merge the training and the test sets to create one data set."
+15. "DONE: 2.3 Merge the training and the test sets to create one data set."
+16. "STEP2 : DONE"
+17. "grouping by Activity and Subject"
+    "summarise_all(funs(mean))"
