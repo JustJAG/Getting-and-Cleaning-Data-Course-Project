@@ -223,7 +223,6 @@ run_analysis_step2 <- function(data) {
     (inner_join(data$activity_labels.txt, data$y_test.txt))
   )
 
-  dd <- inner_join(data$activity_labels.txt, data$y_test.txt)
   print("DONE: 2.2 Merge the test dataset")
 
   print("BEGIN: 2.3 Merge the training and the test sets to create one data set.")
